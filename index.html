@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+            var player = 0, comp = 0;
+            function computerPlay() {
+                let rand = Math.floor(Math.random() * 3);
+                switch(rand) {
+                    case 0: return "rock"; break;
+                    case 1: return "paper"; break;
+                    case 2: return "scissors"; break;
+                }
+            }
+        
+            function playRound(playerSelection, computerSelection) {
+                playerSelection = playerSelection.toLowerCase();
+                if(playerSelection == computerSelection) {
+                    return "Tie";
+                } else if (playerSelection == "rock" && computerSelection == "scissors") {
+                    player++;
+                    return "You Win! Rock beats Scissors";
+                } else if (playerSelection == "paper" && computerSelection == "rock") {
+                    player++;
+                    return "You Win! Paper beats Rock";
+                } else if (playerSelection == "scissors" && computerSelection == "paper") {
+                    player++;
+                    return "You Win! Scissors beats Paper";
+                } else {
+                    comp++;
+                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                }
+            }
+        
+            function game() {
+                for (let index = 0;  index < 3; index++) {
+                    let playerInput = prompt("Write rock/paper/scissors.");
+                    console.log(playRound(playerInput, computerPlay()));
+                }
+                console.log(`player: ${player}`);
+                console.log(`computer: ${comp}`);
+                if (player > comp) {
+                    console.log("You Win!!");
+                } else if(player < comp) {
+                    console.log("You Lose!!");
+                } else {
+                    console.log("Tie!!");
+                }
+            }
+        
+            game();
+        </script>
+</body>
+</html>
